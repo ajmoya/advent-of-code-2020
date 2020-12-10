@@ -1,16 +1,8 @@
 import puzzleInput from "./input.ts";
 
 class TobogganTrajectory {
-  private static TREE: string = "X";
-  private static EMPTY: string = "O";
-
-  constructor(private inputPuzzle: string[]) {
-    while (this.inputPuzzle[0].length < this.inputPuzzle.length * 7 + 1) {
-      for (let i = 0; i < this.inputPuzzle.length; i++) {
-        this.inputPuzzle[i] += this.inputPuzzle[i];
-      }
-    }
-  }
+  private static TREE = "X";
+  private static EMPTY = "O";
 
   partOne() {
     return this.numTrees(3, 1);
@@ -27,12 +19,12 @@ class TobogganTrajectory {
   }
 
   private numTrees(slopeRight: number, slopeDown: number) {
-    let path: string[] = [];
+    const path: string[] = [];
 
     let ejeX = 1;
-    for (let i = slopeDown; i < this.inputPuzzle.length; i += slopeDown) {
+    for (let i = slopeDown; i < puzzleInput.length; i += slopeDown) {
       path.push(
-        this.inputPuzzle[i][ejeX++ * slopeRight] === "#"
+        puzzleInput[i][(ejeX++ * slopeRight) % puzzleInput[0].length] === "#"
           ? TobogganTrajectory.TREE
           : TobogganTrajectory.EMPTY
       );
@@ -42,7 +34,13 @@ class TobogganTrajectory {
   }
 }
 
-let toboggan = new TobogganTrajectory(puzzleInput);
+const toboggan = new TobogganTrajectory();
 
-console.log("Part One del puzzle -> Número de árboles en la ruta: ", toboggan.partOne());
-console.log("Part Two del puzzle -> Número de árboles en la ruta: ", toboggan.partTwo());
+console.log(
+  "Part One del puzzle -> Número de árboles en la ruta: ",
+  toboggan.partOne()
+);
+console.log(
+  "Part Two del puzzle -> Número de árboles en la ruta: ",
+  toboggan.partTwo()
+);

@@ -5,17 +5,17 @@ class PasswordPhilosophy {
   partOne(): number {
     let numberOfvalidPasswords = 0;
 
-    for (let item of this.puzzleInput) {
-      let splitted = item.split(":", 2);
-      let splittedPolicies = splitted[0].split(" ", 2);
-      let minAndMax = splittedPolicies[0].split("-", 2);
-      let minNumberOfTimes = Number(minAndMax[0]);
-      let maxNumberOfTimes = Number(minAndMax[1]);
-      let letterWithRestriction = splittedPolicies[1];
-      let password = splitted[1].trim();
+    for (const item of this.puzzleInput) {
+      const splitted = item.split(":", 2);
+      const splittedPolicies = splitted[0].split(" ", 2);
+      const minAndMax = splittedPolicies[0].split("-", 2);
+      const minNumberOfTimes = Number(minAndMax[0]);
+      const maxNumberOfTimes = Number(minAndMax[1]);
+      const letterWithRestriction = splittedPolicies[1];
+      const password = splitted[1].trim();
 
-      let regex = new RegExp(letterWithRestriction, "g");
-      let numOcurrencesInLetter = (password.match(regex) || []).length;
+      const regex = new RegExp(letterWithRestriction, "g");
+      const numOcurrencesInLetter = (password.match(regex) || []).length;
 
       if (
         this.isValidPasswordPartOne(
@@ -45,18 +45,18 @@ class PasswordPhilosophy {
   partTwo() {
     let numberOfvalidPasswords = 0;
 
-    for (let pasword of this.puzzleInput) {
-      let splitted = pasword.split(": ", 2);
-      let splittedPolicies = splitted[0].split(" ", 2);
-      let positions = splittedPolicies[0].split("-", 2);
-      let position1 = Number(positions[0]);
-      let position2 = Number(positions[1]);
-      let letterWithRestriction = splittedPolicies[1];
-      let pass = splitted[1];
+    for (const item of this.puzzleInput) {
+      const splitted = item.split(": ", 2);
+      const splittedPolicies = splitted[0].split(" ", 2);
+      const positions = splittedPolicies[0].split("-", 2);
+      const position1 = Number(positions[0]);
+      const position2 = Number(positions[1]);
+      const letterWithRestriction = splittedPolicies[1];
+      const password = splitted[1];
 
       if (
         this.isValidPasswordPartTwo(
-          pass,
+          password,
           letterWithRestriction,
           position1,
           position2
@@ -75,8 +75,8 @@ class PasswordPhilosophy {
     position1: number,
     position2: number
   ) {
-    let letterAtPosition1 = password.charAt(position1 - 1);
-    let letterAtPosition2 = password.charAt(position2 - 1);
+    const letterAtPosition1 = password.charAt(position1 - 1);
+    const letterAtPosition2 = password.charAt(position2 - 1);
     return (
       [...letterAtPosition1, letterAtPosition2].filter(
         (x) => x === letterWithRestriction
@@ -85,7 +85,7 @@ class PasswordPhilosophy {
   }
 }
 
-let password = new PasswordPhilosophy(puzzleInput);
+const password = new PasswordPhilosophy(puzzleInput);
 
 console.log(
   "Número de passwords válidas en Part One del puzzle: ",
