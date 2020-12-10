@@ -1,4 +1,4 @@
-let inputPass = [
+const puzzleInput: string[] = [
   "1-14 b: bbbbbbbbbbbbbbbbbbb",
   "3-14 v: vvpvvvmvvvvvvvv",
   "2-5 m: mfvxmmm",
@@ -1001,75 +1001,4 @@ let inputPass = [
   "2-5 f: mmcfxtk",
 ];
 
-function Day2PartOne() {
-  let numberOfvalidPasswords = 0;
-
-  for (let pasword of inputPass) {
-    let splitted = pasword.split(": ", 2);
-    let splittedPolicies = splitted[0].split(" ", 2);
-    let minAndMax = splittedPolicies[0].split("-", 2);
-    let minNumberOfTimes = Number(minAndMax[0]);
-    let maxNumberOfTimes = Number(minAndMax[1]);
-    let letterWithRestriction = splittedPolicies[1];
-    let pass = splitted[1];
-
-    let regex = new RegExp(letterWithRestriction, "g");
-    let numOcurrencesInLetter = (pass.match(regex) || []).length;
-
-    if (
-      isValidPasswordPartOne(minNumberOfTimes, numOcurrencesInLetter, maxNumberOfTimes)
-    ) {
-      numberOfvalidPasswords++;
-    }
-  }
-
-  return numberOfvalidPasswords;
-}
-
-function isValidPasswordPartOne(
-  minNumberOfTimes: number,
-  numOcurrencesInLetter: number,
-  maxNumberOfTimes: number
-) {
-  return (
-    numOcurrencesInLetter >= minNumberOfTimes &&
-    numOcurrencesInLetter <= maxNumberOfTimes
-  );
-}
-
-function Day2PartTwo() {
-  let numberOfvalidPasswords = 0;
-
-  for (let pasword of inputPass) {
-    let splitted = pasword.split(": ", 2);
-    let splittedPolicies = splitted[0].split(" ", 2);
-    let positions = splittedPolicies[0].split("-", 2);
-    let position1 = Number(positions[0]);
-    let position2 = Number(positions[1]);
-    let letterWithRestriction = splittedPolicies[1];
-    let pass = splitted[1];
-
-    if (isValidPasswordPartTwo(pass, letterWithRestriction, position1, position2)) {
-      numberOfvalidPasswords++;
-    }
-  }
-
-  return numberOfvalidPasswords;
-}
-
-function isValidPasswordPartTwo(
-  password: string,
-  letterWithRestriction: string,
-  position1: number,
-  position2: number
-) {
-  let letterAtPosition1 = password.charAt(position1 - 1);
-  let letterAtPosition2 = password.charAt(position2 - 1);
-  return (
-    [...letterAtPosition1, letterAtPosition2].filter((x) => x === letterWithRestriction)
-      .length === 1
-  );
-}
-
-console.log("Número de passwords válidas en Part One del puzzle: ", Day2PartOne());
-console.log("Número de passwords válidas en Part Two del puzzle: ", Day2PartTwo());
+export default puzzleInput;

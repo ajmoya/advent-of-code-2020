@@ -1,4 +1,4 @@
-let input = [
+const puzzleInput: number[] = [
   1650,
   1174,
   1156,
@@ -201,31 +201,4 @@ let input = [
   1913,
 ];
 
-function Day1PartOne() {
-  let complement: Record<number, boolean> = {};
-
-  for (let num of input) {
-    complement[num] = true;
-
-    let toFind = 2020 - num;
-
-    if (complement[toFind]) {
-      return toFind * num;
-    }
-  }
-}
-
-function Day1PartTwo() {
-  for (let numA of input) {
-    for (let numB of input) {
-      for (let numC of input) {
-        if (numA + numB + numC === 2020) {
-          return numA * numB * numC;
-        }
-      }
-    }
-  }
-}
-
-console.log("Key válida en Part One del puzzle: ", Day1PartOne());
-console.log("Key válida en Part Two del puzzle: ", Day1PartTwo());
+export default puzzleInput;
